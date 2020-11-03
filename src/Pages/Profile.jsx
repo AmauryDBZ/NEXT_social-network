@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
 const Profile = () => {
-
-//GET http://localhost:1337/users/me
+	//GET http://localhost:1337/users/me
+	/*
 fetch('https://my-pasteque-space.herokuapp.com/auth/local/register', {
   method: 'post',
   headers: {
@@ -10,10 +10,8 @@ fetch('https://my-pasteque-space.herokuapp.com/auth/local/register', {
   },
   body: JSON.stringify(data)
 })
-
-  return (
-    <p>coucou</p>
-  )
-}
+*/
+	return <p>coucou</p>;
+};
 
 export default Profile;
