@@ -10,15 +10,12 @@ const SignInForm = () => {
 
   const handleValues = (e) => {
     e.preventDefault();
-    console.log(input);
 
     const data = {
-      'username': `${input.username}`,
-      'email': `${input.email}`,
-      'password': `${input.password}`
+      username: input.username,
+      email: input.email,
+      password: input.password
     };
-
-    console.log(data);
 
     fetch('https://my-pasteque-space.herokuapp.com/auth/local/register', {
       method: 'post',
@@ -28,8 +25,7 @@ const SignInForm = () => {
       body: JSON.stringify(data)
     })
     .then((response) => console.log(response))
-    .catch((error) => console.error(error))
-  }
+  };
 
     return (
         <form className="signInForm">
