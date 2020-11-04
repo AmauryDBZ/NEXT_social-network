@@ -1,17 +1,17 @@
 const isLoggedReducer = (
 	state = {
-		id: "",
+		id: 0,
 		email: "",
 		token: "",
 	},
-	userData,
+	action,
 ) => {
-	switch (userData.type) {
+	switch (action.type) {
 		case "IS_LOGGED":
 			return {
-				id: userData.id,
-				email: userData.email,
-				token: userData.token,
+				id: action.userData.id,
+				email: action.userData.email,
+				token: action.userData.token,
 			};
 		default:
 			return state;

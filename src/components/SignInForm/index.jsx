@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import jwt_decode from "jwt-decode";
 import Cookies from "js-cookie";
+import loggingAction from '../../Redux/actions/loggingAction';
 
 const SignInForm = () => {
 	const [input, setInput] = useState([]);
@@ -42,13 +43,13 @@ const SignInForm = () => {
 					email: response.user.email,
 					token: response.jwt,
 				};
-				dispatch(isLogged(userData));
+				dispatch(loggingAction(userData));
 			});
 	};
 
 	return (
 		<div>
-			<p>{isLogged}</p>
+			<p>{isLogged.length}</p>
 			<h3>Sign In : </h3>
 			<form className="signInForm">
 				<label htmlFor="username">Identifiant</label>
