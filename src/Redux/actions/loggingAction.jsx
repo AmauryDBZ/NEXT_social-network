@@ -1,7 +1,7 @@
 const loggingAction = (userData) => {
 	return {
 		type: "IS_LOGGED",
-		userData: userData
+		userData,
 	};
 };
 

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import jwt_decode from "jwt-decode";
 import Cookies from "js-cookie";
-import loggingAction from '../../Redux/actions/loggingAction';
+import loggingAction from "../../Redux/actions/loggingAction";
 
 const SignInForm = () => {
 	const [input, setInput] = useState([]);
@@ -35,14 +35,13 @@ const SignInForm = () => {
 			.then((response) => {
 				console.log(response);
 				let token = response.jwt;
-				let decoded = jwt_decode(token);
-				console.log(decoded);
 				Cookies.set("token", token);
-				const userData = {
-					id: response.user.id,
-					email: response.user.email,
-					token: response.jwt,
+				// let userData = response.user;
+
+				let userData = {
+					user: response.user,
 				};
+
 				dispatch(loggingAction(userData));
 			});
 	};
