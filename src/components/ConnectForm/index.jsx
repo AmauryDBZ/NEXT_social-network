@@ -1,7 +1,12 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import loggingAction from '../../Redux/actions/loggingAction';
+import Cookies from "js-cookie";
 
 const ConnectForm = () => {
 	const [input, setInput] = useState([]);
+  const dispatch = useDispatch();
+  const isLogged = useSelector((state) => state.isLogged);
 
 	const handleInputChange = (e) =>
 		setInput({
@@ -13,10 +18,10 @@ const ConnectForm = () => {
 		e.preventDefault();
 
 		const data = {
-			username: input.username,
+			identifier: input.username,
 			password: input.password,
 		};
-
+    console.log(data);
 		fetch("https://my-pasteque-space.herokuapp.com/auth/local", {
 			method: "post",
 			headers: {
@@ -25,7 +30,17 @@ const ConnectForm = () => {
 			body: JSON.stringify(data),
 		})
 			.then((response) => response.json())
-			.then((response) => console.log(response));
+			.then((response) => {
+        console.log(response);
+        let token = response.jwt;
+        Cookies.set("token", token);
+				const userData = {
+					id: response.user.id,
+					email: response.user.email,
+					token: response.jwt,
+				};
+				dispatch(loggingAction(userData));
+      });
 	};
 
 	return (
