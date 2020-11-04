@@ -11,7 +11,11 @@ fetch('https://my-pasteque-space.herokuapp.com/auth/local/register', {
   body: JSON.stringify(data)
 })
 */
-	return <p>coucou</p>;
+	return (
+    <div>
+      <!-- <button onClick={() => }>Mon profil</button> -->
+    </div>
+  )
 };
 
 export default Profile;
