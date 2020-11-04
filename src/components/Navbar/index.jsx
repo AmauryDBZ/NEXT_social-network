@@ -19,7 +19,9 @@ const Navbar = () => {
 			{isLogged ? (
 				<div className="loggedInButtons">
 					<button onClick={() => disconnect()}>Déconnexion</button>
-					<a href="http://localhost:3000/profile/me">Mon profil</a>
+					<Link to="/profile/me">
+						<button>Mon Profil</button>
+					</Link>
 				</div>
 			) : (
 				<div>

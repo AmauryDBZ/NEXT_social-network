@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import loggingAction from "../../Redux/actions/loggingAction";
 import Cookies from "js-cookie";
 
 const ConnectForm = () => {
 	const [input, setInput] = useState([]);
 	const dispatch = useDispatch();
-	const isLogged = useSelector((state) => state.isLogged);
 
 	const handleInputChange = (e) =>
 		setInput({

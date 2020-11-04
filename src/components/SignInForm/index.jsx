@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import Cookies from "js-cookie";
 import loggingAction from "../../Redux/actions/loggingAction";
 
 const SignInForm = () => {
 	const [input, setInput] = useState([]);
 	const dispatch = useDispatch();
-	const isLogged = useSelector((state) => state.isLogged);
 
 	const handleInputChange = (e) =>
 		setInput({
@@ -42,7 +41,6 @@ const SignInForm = () => {
 
 	return (
 		<div>
-			<p>{isLogged.length}</p>
 			<h3>Sign In : </h3>
 			<form className="signInForm">
 				<label htmlFor="username">Identifiant</label>

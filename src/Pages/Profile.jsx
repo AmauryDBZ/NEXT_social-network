@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Cookies from "js-cookie";
+import NewPost from '../components/NewPost';
 
 const Profile = () => {
 	const [userToken, setUserToken] = useState(Cookies.get("token"));
@@ -31,6 +32,7 @@ const Profile = () => {
 					<p>{userData.email}</p>
 				</div>
 			)}
+      <NewPost />
 		</section>
 	);
 };
