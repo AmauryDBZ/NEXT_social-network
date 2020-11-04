@@ -1,13 +1,37 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import Cookies from "js-cookie";
 
 const Profile = () => {
-	let { profileSlug } = useParams();
+	const [userToken, setUserToken] = useState(Cookies.get("token"));
+	const [userData, setUserData] = useState({});
+
+	useEffect(() => {
+		if (userToken) {
+			fetch("https://my-pasteque-space.herokuapp.com/users/me", {
+				method: "get",
+				headers: {
+					Authorization: `Bearer ${userToken}`,
+					"Content-Type": "application/json",
+				},
+			})
+				.then((response) => response.json())
+				.then((response) => {
+					setUserData(response);
+					console.log(userData);
+				});
+		}
+	}, []);
 
 	return (
-		<div>
-			<button>Mon profil</button>
-		</div>
+		<section>
+			<h1>Profil de l'utilisateur : {userData.username} </h1>
+			{userData && (
+				<div>
+					<p>{userData.id}</p>
+					<p>{userData.email}</p>
+				</div>
+			)}
+		</section>
 	);
 };
 
