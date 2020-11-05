@@ -9,8 +9,8 @@ const NewPost = () => {
 
 	const sendNewPost = (e) => {
     e.preventDefault();
-    let userToken = Cookies.get("token");
-    let decoded = jwt_decode(userToken);
+    const userToken = Cookies.get("token");
+    const decoded = jwt_decode(userToken);
     const data = {
       text: newPost,
       user: decoded.id,
@@ -33,17 +33,20 @@ const NewPost = () => {
 	}
 
 	return (
-		<form>
-      {isLogged.length}
-      <label htmlFor="text">Texte :</label>
-      <input
-        type="text"
-        id="text"
-        name="text"
-        onChange={(e) => setNewPost(e.currentTarget.value)}
-      />
-    <button onClick={(e) => sendNewPost(e)}>Publier le poste</button>
-    </form>
+    <div>
+      <h2>Créer un nouveau post :</h2>
+  		<form>
+        {isLogged.length}
+        <label htmlFor="text">Texte :</label>
+        <input
+          type="text"
+          id="text"
+          name="text"
+          onChange={(e) => setNewPost(e.currentTarget.value)}
+        />
+      <button onClick={(e) => sendNewPost(e)}>Publier le poste</button>
+      </form>
+    </div>
 	);
 };
 

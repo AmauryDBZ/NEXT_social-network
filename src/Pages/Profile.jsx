@@ -1,10 +1,17 @@
 import React, { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import NewPost from '../components/NewPost';
+import UpdateProfile from '../components/UpdateProfile';
 
 const Profile = () => {
 	const [userToken, setUserToken] = useState(Cookies.get("token"));
 	const [profileData, setProfileData] = useState({});
+	const [toggleUpdate, setToggleUpdate] = useState(false);
+
+	const showUpdateForm = (e) => {
+		e.preventDefault();
+		setToggleUpdate(!toggleUpdate);
+	}
 
 	useEffect(() => {
 		if (userToken) {
@@ -31,6 +38,14 @@ const Profile = () => {
 					<p>{profileData.email}</p>
 				</div>
 			)}
+			<button onClick={(e) => showUpdateForm(e)}>Mettre à jour mon profil</button>
+			{toggleUpdate && (
+				<div>
+					<hr />
+					<UpdateProfile />
+				</div>
+			)}
+			<hr />
       <NewPost />
 		</section>
 	);
