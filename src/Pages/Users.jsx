@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Cookies from "js-cookie";
 import Post from "../components/Post/";
+import "./index.scss";
 
 const Users = () => {
 	const [profileData, setProfileData] = useState();
@@ -49,7 +50,7 @@ const Users = () => {
 
 	return (
 		<div>
-			<h1>Page utilisateur : </h1>
+			<h1 className="mainTitle">Page utilisateur : </h1>
 			{profileData && (
 				<div>
 					<div>
@@ -64,6 +65,7 @@ const Users = () => {
 								text={post.text}
 								user={post.user.username}
 								userId={post.user.id}
+								key={post.id}
 							/>
 						))}
 				</div>

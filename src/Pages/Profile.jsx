@@ -4,6 +4,7 @@ import jwt_decode from "jwt-decode";
 import NewPost from "../components/NewPost";
 import UpdateProfile from "../components/UpdateProfile";
 import Post from "../components/Post/";
+import "./index.scss";
 
 const Profile = () => {
 	const [profileData, setProfileData] = useState({});
@@ -54,7 +55,9 @@ const Profile = () => {
 
 	return (
 		<section>
-			<h1>Profil de l'utilisateur : {profileData.username} </h1>
+			<h1 className="mainTitle">
+				Profil de l'utilisateur : {profileData.username}{" "}
+			</h1>
 			{profileData && (
 				<div>
 					<p>{profileData.id}</p>
@@ -80,6 +83,7 @@ const Profile = () => {
 						text={post.text}
 						user={post.user.username}
 						userId={post.user.id}
+						key={post.id}
 					/>
 				))}
 		</section>

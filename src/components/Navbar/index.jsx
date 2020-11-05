@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import "./index.scss";
 
 const Navbar = () => {
-	const [isLogged, setIsLogged] = useState(Cookies.get("token"));
+	const [isLogged] = useState(Cookies.get("token"));
 
 	const disconnect = () => {
 		Cookies.remove("token");
@@ -13,8 +13,8 @@ const Navbar = () => {
 
 	return (
 		<nav className="navbar">
-			<Link to="/" id="homeButton">
-				Touche pas au grisbi !
+			<Link to="/" id="home">
+				Grisbi
 			</Link>
 			{isLogged ? (
 				<div className="buttons">
@@ -25,12 +25,8 @@ const Navbar = () => {
 				</div>
 			) : (
 				<div className="buttons">
-					<Link to="/connect">
-						<button>Se connecter</button>
-					</Link>
-					<Link to="/signin">
-						<button>S'inscrire</button>
-					</Link>
+					<Link to="/connect">Se connecter</Link>
+					<Link to="/signin">S'inscrire</Link>
 				</div>
 			)}
 		</nav>

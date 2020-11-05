@@ -3,6 +3,7 @@ import { Redirect } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import loggingAction from "../../Redux/actions/loggingAction";
 import Cookies from "js-cookie";
+import "./index.scss";
 
 const ConnectForm = () => {
 	const [input, setInput] = useState([]);
@@ -45,28 +46,28 @@ const ConnectForm = () => {
 	};
 
 	return (
-		<div>
-			<form>
-				<label htmlFor="username">Identifiant</label>
-				<input
-					type="text"
-					id="username"
-					name="username"
-					onChange={handleInputChange}
-				/>
-				<label htmlFor="password">Mot de passe</label>
-				<input
-					type="password"
-					id="passwordInput"
-					name="password"
-					onChange={handleInputChange}
-				/>
-				<button type="submit" onClick={(e) => handleValues(e)}>
-					Connect
-				</button>
-			</form>
+		<form>
+			<label htmlFor="username">Identifiant</label>
+			<input
+				type="text"
+				id="username"
+				name="username"
+				autoComplete="username"
+				onChange={handleInputChange}
+			/>
+			<label htmlFor="password">Mot de passe</label>
+			<input
+				type="password"
+				id="passwordInput"
+				name="password"
+				autoComplete="off"
+				onChange={handleInputChange}
+			/>
+			<button className="submit" type="submit" onClick={(e) => handleValues(e)}>
+				Connect
+			</button>
 			{redirect && <Redirect to={{ pathname: "/" }} />}
-		</div>
+		</form>
 	);
 };
 
