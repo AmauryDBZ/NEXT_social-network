@@ -32,6 +32,7 @@ const Home = () => {
 						id={post.id}
 						text={post.text}
 						user={post.user.username}
+						userId={post.user.id}
 						/>))
 					) : (
 						<p>aucun post n'est disponible ...</p>
