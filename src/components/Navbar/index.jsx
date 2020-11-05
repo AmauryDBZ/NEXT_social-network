@@ -1,13 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
-import SignInForm from "../SignInForm";
-import ConnectForm from "../ConnectForm";
 import "./index.scss";
 
 const Navbar = () => {
-	const [whichForm, setWhichForm] = useState("connect");
-	const isLogged = Cookies.get("token");
+	const [isLogged, setIsLogged] = useState(Cookies.get("token"));
 
 	const disconnect = () => {
 		Cookies.remove("token");
@@ -16,18 +13,24 @@ const Navbar = () => {
 
 	return (
 		<nav className="navbar">
+			<Link to="/" id="homeButton">
+				Touche pas au grisbi !
+			</Link>
 			{isLogged ? (
-				<div className="loggedInButtons">
+				<div className="buttons">
 					<button onClick={() => disconnect()}>Déconnexion</button>
 					<Link to="/profile/me">
 						<button>Mon Profil</button>
 					</Link>
 				</div>
 			) : (
-				<div>
-					<button onClick={() => setWhichForm("connect")}>Se connecter</button>
-					<button onClick={() => setWhichForm("signin")}>S'inscrire</button>
-					{whichForm === "connect" ? <ConnectForm /> : <SignInForm />}
+				<div className="buttons">
+					<Link to="/connect">
+						<button>Se connecter</button>
+					</Link>
+					<Link to="/signin">
+						<button>S'inscrire</button>
+					</Link>
 				</div>
 			)}
 		</nav>

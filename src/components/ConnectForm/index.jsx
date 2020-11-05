@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import loggingAction from "../../Redux/actions/loggingAction";
 import Cookies from "js-cookie";
 
 const ConnectForm = () => {
 	const [input, setInput] = useState([]);
+	const [redirect, setRedirect] = useState(false);
+
 	const dispatch = useDispatch();
 
 	const handleInputChange = (e) =>
@@ -37,12 +40,12 @@ const ConnectForm = () => {
 					user: response.user,
 				};
 				dispatch(loggingAction(userData));
+				setRedirect(true);
 			});
 	};
 
 	return (
 		<div>
-			<h3>Connect form :</h3>
 			<form>
 				<label htmlFor="username">Identifiant</label>
 				<input
@@ -62,6 +65,7 @@ const ConnectForm = () => {
 					Connect
 				</button>
 			</form>
+			{redirect && <Redirect to={{ pathname: "/" }} />}
 		</div>
 	);
 };

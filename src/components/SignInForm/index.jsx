@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import Cookies from "js-cookie";
 import loggingAction from "../../Redux/actions/loggingAction";
 
 const SignInForm = () => {
 	const [input, setInput] = useState([]);
+	const [redirect, setRedirect] = useState(false);
 	const dispatch = useDispatch();
 
 	const handleInputChange = (e) =>
@@ -36,12 +38,12 @@ const SignInForm = () => {
 				Cookies.set("token", token);
 				let userData = { user: response.user };
 				dispatch(loggingAction(userData));
+				setRedirect(true);
 			});
 	};
 
 	return (
 		<div>
-			<h3>Sign In : </h3>
 			<form className="signInForm">
 				<label htmlFor="username">Identifiant</label>
 				<input
@@ -68,6 +70,7 @@ const SignInForm = () => {
 					Sign in
 				</button>
 			</form>
+			{redirect && <Redirect to={{ pathname: "/" }} />}
 		</div>
 	);
 };
