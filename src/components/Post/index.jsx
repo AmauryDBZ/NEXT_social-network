@@ -14,20 +14,16 @@ const Post = ({ id, text, user, userId }) => {
 				Authorization: `Bearer ${token}`,
 				"Content-Type": "application/json",
 			},
-		})
-			.then((response) => response.json())
-			.then((response) => console.log(response));
+		});
 	};
 
 	return (
 		<div>
 			<Link to={`/profile/${userId}`}>Utilisateur : {user}</Link>
 			<p>Poste : {text}</p>
-
 			{decoded.id === userId && (
 				<button onClick={() => deletePost()}>Supprimer</button>
 			)}
-
 			<hr />
 		</div>
 	);
