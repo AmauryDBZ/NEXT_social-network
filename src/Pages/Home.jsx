@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import Post from "../components/Post";
 import "./index.scss";
+import grisbi from "../assets/ghost.png";
 
 const Home = () => {
 	const [posts, setPosts] = useState();
@@ -38,7 +39,12 @@ const Home = () => {
 					/>
 				)))
 			) : (
-				<p>aucun post n'est disponible ...</p>
+				<div className="emptyHome">
+					<p>
+						Aucun post n'est disponible ... Dis bonjour à Grisbi en attendant !
+					</p>
+					<img src={grisbi} alt="Grisbi le fantôme" width="192px" />
+				</div>
 			)}
 		</section>
 	);
