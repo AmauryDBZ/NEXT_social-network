@@ -15,26 +15,30 @@ const Home = () => {
 					"Content-Type": "application/json",
 				},
 			})
-				.then((response) => response.json())
-				.then((response) => {
-					setPosts(response);
-					console.log(posts);
-				});
+			.then((response) => response.json())
+			.then((response) => {
+				setPosts(response);
+			});
 		}
 	}, []);
 
 	return (
 		<section>
 			<h1>Home sweet home</h1>
-			{posts && posts.map((post) => (
-				<Post
-					id={post.id}
-					text={post.text}
-					user={post.user.username}
-				/>
-			))}
-		</section>
-	);
-};
+			{posts ? (
+				<h4>tous les postes disponibles :</h4>,
+				posts.map((post) => (
+					<Post
+						id={post.id}
+						text={post.text}
+						user={post.user.username}
+						/>))
+					) : (
+						<p>aucun post n'est disponible ...</p>
+					)
+				}
+			</section>
+		);
+	};
 
-export default Home;
+	export default Home;

@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import { useSelector } from "react-redux";
+import jwt_decode from "jwt-decode";
 
 const NewPost = () => {
   const [newPost, setNewPost] = useState();
   const isLogged = useSelector((state) => state.isLogged);
 
-  console.log(isLogged);
-
-	const sendNewPost = () => {
-    console.log(newPost);
-		let userToken = Cookies.get("token");
-    console.log(userToken);
+	const sendNewPost = (e) => {
+    e.preventDefault();
+    let userToken = Cookies.get("token");
+    let decoded = jwt_decode(userToken);
     const data = {
       text: newPost,
-      user: isLogged.user.id,
+      user: decoded.id,
     };
     console.log(data);
 		if (userToken) {
@@ -43,7 +42,7 @@ const NewPost = () => {
         name="text"
         onChange={(e) => setNewPost(e.currentTarget.value)}
       />
-      <button onClick={() => sendNewPost()}>Publier le poste</button>
+    <button onClick={(e) => sendNewPost(e)}>Publier le poste</button>
     </form>
 	);
 };

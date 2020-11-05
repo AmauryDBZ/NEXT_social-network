@@ -4,7 +4,7 @@ import NewPost from '../components/NewPost';
 
 const Profile = () => {
 	const [userToken, setUserToken] = useState(Cookies.get("token"));
-	const [userData, setUserData] = useState({});
+	const [profileData, setProfileData] = useState({});
 
 	useEffect(() => {
 		if (userToken) {
@@ -17,19 +17,18 @@ const Profile = () => {
 			})
 				.then((response) => response.json())
 				.then((response) => {
-					setUserData(response);
-					console.log(userData);
+					setProfileData(response);
 				});
 		}
 	}, []);
 
 	return (
 		<section>
-			<h1>Profil de l'utilisateur : {userData.username} </h1>
-			{userData && (
+			<h1>Profil de l'utilisateur : {profileData.username} </h1>
+			{profileData && (
 				<div>
-					<p>{userData.id}</p>
-					<p>{userData.email}</p>
+					<p>{profileData.id}</p>
+					<p>{profileData.email}</p>
 				</div>
 			)}
       <NewPost />

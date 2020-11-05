@@ -5,7 +5,7 @@ const isLoggedReducer = (state = {}, action) => {
 				user: action.userData.user,
 			};
 		default:
-			return state;
+			return state = { user: '' };
 	}
 };
 
